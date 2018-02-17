@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LearnVue Beginner Course | Lesson 1</title>
+  </head>
+  <body>
+    <h1>Lesson 01</h1>
+
+    <div id="app">
+        <p>Hello {{ name }}!</p>
+
+        <input type="text" v-model="name" />
+        <!-- v-model is a Vue directive
+        this will bind the input field to 'name' variable defined in the Vue instance below -->
+    </div>
+
+    <script src="https://unpkg.com/vue@2.4.1/dist/vue.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                name: 'Brandon'
+            }
+        })
+    </script>
+
+  </body>
+</html>

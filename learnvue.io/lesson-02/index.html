@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LearnVue Beginner Course | Lesson 2</title>
+  </head>
+  <body>
+    <h1>Lesson 02</h1>
+
+    <div id="app">
+        <p>Hello {{ name }}!</p>
+
+        <p v-if="name === 'Seymour'">Feeeeeeed me, {{ name }}! Feeeed Me!</p>
+        <!-- Whatever we pass to the v-if directive will only render 
+            the element if it evaluates to true. -->
+
+        <p v-show="name === 'Brandon'">Hey, you aren't Seymour.</p>
+        <!-- Visually similar to the v-if directive is the v-show directive. 
+            However, if you inspect the browser, you will see the difference 
+            is that v-if won't render if it doesn't eval to true, 
+            however the v-show is rendered regardless, but based on the eval, 
+            the element will get a display none or block. -->
+        
+        <p v-if="name === 'Brandon'">How are you?</p>    
+        <p v-else-if="name === 'Seymour'">Long time, no see!</p>
+        <p v-else>Nice to meet you.</p>
+        <!-- if, else-if, else - exactly as you expect -->
+
+        <ul>
+            <li v-for="friend in friends">Welcome to Vue, {{ friend }}!</li>
+        </ul>
+        <!-- Much like a for loop in Javascript
+        index in array -->
+        
+
+        <input type="text" v-model="name" />
+
+    </div>
+
+    <script src="https://unpkg.com/vue@2.4.1/dist/vue.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                name: 'Brandon',
+                friends: [
+                    'Brandon',
+                    'Seymour',
+                    'Nicole',
+                    'James'
+                ]
+            }
+        })
+    </script>
+
+  </body>
+</html>

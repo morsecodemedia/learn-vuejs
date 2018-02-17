@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LearnVue Beginner Course | Lesson 3</title>
+  </head>
+  <body>
+    <h1>Lesson 03</h1>
+
+    <div id="app">
+
+        <ul>
+            <li v-for="friend in friends">{{ greeting }} {{ friend }}!</li>
+        </ul>
+        <button v-on:click="bye">Say goodbye</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@2.4.1/dist/vue.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                greeting: 'Hello',
+                friends: [
+                    'Brandon',
+                    'Seymour',
+                    'Nicole',
+                    'James'
+                ]
+            },
+            methods: {
+                bye() {
+                    this.greeting = 'Bye'
+                }
+            }
+        })
+    </script>
+
+  </body>
+</html>
