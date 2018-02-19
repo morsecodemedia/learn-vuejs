@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LearnVue Beginner Course | Lesson 4</title>
+  </head>
+  <body>
+    <h1>Lesson 04</h1>
+    <!-- this way will create a global component. 
+    In a future course we will learn the difference between 
+    globally and locally registered components. -->
+    <div id="app">
+        <!-- Removed thed `DOM template` and defined a `string template` in the Vue component -->
+        <!-- We are now rendering our component on the page, and passing it the `friends` prop -->
+        <friends-list :friends=friends></friends-list>
+    </div>
+
+    <script src="https://unpkg.com/vue@2.4.1/dist/vue.js"></script>
+
+    <script>
+        
+        Vue.component('friends-list', {
+            // DOM templates are loaded by the browser before our Vue instance is created, 
+            // whereas string templates are handled by Vue.
+            template: `<div>
+                <ul>
+                    <li v-for="friend in friends">
+                        {{ greeting }} {{ friend }}!
+                    </li>
+                </ul>
+                <button v-on:click="bye">Say goodbye</button>
+            </div>`,
+            // prop is a property that we can pass to the compontent
+            // props: ['friends'],
+            // this is the shorthand form, while valid, best to declare like so to give us some validation rules
+            props: {
+                friends: {
+                    type: Array,
+                    required: true
+                }
+            },
+            // Note the difference with the data definition
+            // When we define data in our Vue instance, we return an object. 
+            // Now that it is inside the component, we ahve to define a function that
+            // returns the data object.
+            // This is because if we were to render multiple components of the same type,
+            // they would all share the same data object.
+            // This prevents that and Vue will throw an error if we do it wrong            
+            data: function () {
+                return {
+                    greeting: 'Hello'
+                }
+            },
+            // methods are declared like before, however we moved bye() to the component
+            methods: {
+                bye() {
+                    this.greeting = 'Bye'
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app',
+            data: {
+                friends: [
+                    'Brandon',
+                    'Seymour',
+                    'Nicole',
+                    'James'
+                ]
+            }
+        })
+    </script>
+
+  </body>
+</html>
